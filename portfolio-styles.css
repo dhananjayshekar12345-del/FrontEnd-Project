@@ -464,16 +464,17 @@ section {
   gap: 30px;
 }
 .edu-card {
-  background: var(--surface);
+  background: linear-gradient(135deg, rgba(7, 17, 24, 0.8) 0%, rgba(12, 34, 48, 0.4) 100%);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 28px;
   position: relative;
-  transition: transform 0.3s, border-color 0.3s;
+  transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.3s, box-shadow 0.3s;
 }
 .edu-card:hover {
   transform: translateY(-3px);
-  border-color: var(--border-hover);
+  border-color: var(--accent2);
+  box-shadow: 0 10px 30px rgba(168, 85, 247, 0.15);
 }
 .edu-header {
   display: flex;
@@ -520,11 +521,11 @@ section {
   gap: 24px;
 }
 .skill-card {
-  background-color: var(--bg);
+  background: linear-gradient(135deg, rgba(7, 17, 24, 0.8) 0%, rgba(12, 34, 48, 0.4) 100%);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 32px;
-  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  transition: border-color 0.3s, transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s;
   position: relative;
   overflow: hidden;
 }
@@ -542,7 +543,7 @@ section {
 .skill-card:hover {
   border-color: var(--accent);
   transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.05);
+  box-shadow: 0 12px 30px rgba(0, 240, 255, 0.15);
 }
 .skill-card:hover::before {
   opacity: 1;
@@ -595,12 +596,17 @@ section {
   margin: 0 auto;
 }
 .exp-card {
-  background: var(--surface);
+  background: linear-gradient(135deg, rgba(7, 17, 24, 0.8) 0%, rgba(12, 34, 48, 0.4) 100%);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 40px;
   position: relative;
   overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.exp-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 15px 35px rgba(0, 240, 255, 0.1);
 }
 .exp-card::after {
   content: '';
@@ -674,7 +680,7 @@ section {
   gap: 30px;
 }
 .project-card {
-  background-color: var(--bg);
+  background: linear-gradient(135deg, rgba(7, 17, 24, 0.8) 0%, rgba(12, 34, 48, 0.4) 100%);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 0;
@@ -682,11 +688,12 @@ section {
   flex-direction: column;
   min-height: 420px;
   overflow: hidden;
-  transition: border-color 0.3s, transform 0.3s;
+  transition: border-color 0.3s, transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s;
 }
 .project-card:hover {
-  border-color: var(--border-hover);
+  border-color: var(--accent2);
   transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(168, 85, 247, 0.15);
 }
 .project-image-wrapper {
   width: 100%;
