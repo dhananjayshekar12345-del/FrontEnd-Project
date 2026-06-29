@@ -1,22 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  --bg: #03080c;
-  --surface: #071118;
-  --surface-hover: #0c1c27;
-  --surface2: #0e2230;
-  --accent: #00f0ff;
-  --accent-glow: rgba(0, 240, 255, 0.35);
-  --accent2: #a855f7;
-  --accent3: #ec4899;
-  --text: #f0f9ff;
-  --muted: #8ab4cd;
-  --border: rgba(0, 240, 255, 0.15);
-  --border-hover: rgba(0, 240, 255, 0.35);
+  --bg: #090610;
+  --surface: #120e1e;
+  --surface-hover: #1b152d;
+  --surface2: #241c3a;
+  --accent: #d946ef;
+  --accent-glow: rgba(217, 70, 239, 0.35);
+  --accent2: #8b5cf6;
+  --accent3: #06b6d4;
+  --text: #fae8ff;
+  --muted: #c084fc;
+  --border: rgba(217, 70, 239, 0.15);
+  --border-hover: rgba(217, 70, 239, 0.35);
   --font-sans: 'Inter', sans-serif;
   --font-display: 'Plus Jakarta Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --glow: rgba(0, 240, 255, 0.12);
+  --glow: rgba(217, 70, 239, 0.12);
 }
 
 /* Light Mode support */
@@ -158,7 +158,7 @@ nav {
   z-index: 100;
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  background: rgba(5, 12, 10, 0.75);
+  background: rgba(9, 6, 16, 0.75);
   border-bottom: 1px solid var(--border);
   transition: background-color 0.3s, border-color 0.3s;
 }
@@ -184,30 +184,82 @@ body.light-theme nav {
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 16px;
   list-style: none;
 }
 .nav-menu a {
   color: var(--muted);
   text-decoration: none;
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.05em;
-  transition: color 0.2s;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  transition: color 0.2s, background-color 0.2s, border-color 0.2s;
 }
 .nav-menu a:hover, .nav-menu a.active {
   color: var(--accent);
+  background-color: rgba(217, 70, 239, 0.06);
+  border-color: var(--border);
 }
 .nav-actions {
   display: flex;
   align-items: center;
   gap: 20px;
 }
+.status-badge-pulse {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(217, 70, 239, 0.08);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent);
+  transition: border-color 0.2s, background-color 0.2s;
+}
+.status-badge-pulse:hover {
+  border-color: var(--accent);
+  background-color: rgba(217, 70, 239, 0.12);
+}
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent);
+  border-radius: 50%;
+  position: relative;
+  display: inline-block;
+}
+.pulse-dot::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-color: var(--accent);
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: pulse-animation 2s infinite ease-in-out;
+}
+@keyframes pulse-animation {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
 .btn-resume {
   padding: 8px 18px;
   border: 1px solid var(--accent);
-  border-radius: 6px;
+  border-radius: 20px;
   color: var(--accent);
   font-family: var(--font-mono);
   font-size: 12px;
@@ -1069,6 +1121,13 @@ footer {
 }
 
 @media (max-width: 768px) {
+  .status-badge-pulse .status-text {
+    display: none;
+  }
+  .status-badge-pulse {
+    padding: 8px;
+    gap: 0;
+  }
   nav {
     padding: 0;
   }
