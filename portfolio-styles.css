@@ -1,22 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  --bg: #050c0a;
-  --surface: #091410;
-  --surface-hover: #0d221a;
-  --surface2: #0f1e19;
-  --accent: #10b981;
-  --accent-glow: rgba(16, 185, 129, 0.35);
-  --accent2: #f59e0b;
-  --accent3: #fb7185;
-  --text: #f0fdf4; /* Slightly brighter for higher contrast */
-  --muted: #8aa99c; /* Brighter muted text for clearer visibility */
-  --border: rgba(16, 185, 129, 0.15);
-  --border-hover: rgba(16, 185, 129, 0.35);
+  --bg: #03080c;
+  --surface: #071118;
+  --surface-hover: #0c1c27;
+  --surface2: #0e2230;
+  --accent: #00f0ff;
+  --accent-glow: rgba(0, 240, 255, 0.35);
+  --accent2: #a855f7;
+  --accent3: #ec4899;
+  --text: #f0f9ff;
+  --muted: #8ab4cd;
+  --border: rgba(0, 240, 255, 0.15);
+  --border-hover: rgba(0, 240, 255, 0.35);
   --font-sans: 'Inter', sans-serif;
   --font-display: 'Plus Jakarta Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --glow: rgba(16, 185, 129, 0.12);
+  --glow: rgba(0, 240, 255, 0.12);
 }
 
 /* Light Mode support */
@@ -1012,9 +1012,17 @@ footer {
     justify-content: flex-start;
   }
   .hero-buttons {
-    justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 260px;
     position: relative;
     z-index: 3;
+  }
+  .hero-buttons .btn {
+    width: 100%;
+    justify-content: center;
   }
   .about-grid, .contact-wrapper {
     grid-template-columns: 1fr;
