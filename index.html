@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATS Resume Metric | Professional Resume Score Checker</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Check your resume's ATS compatibility and score. AI-Free uploader detects missing keywords, checks section presence, calculates word counts, action verbs, and helps improve your job applications.">
+  <meta name="keywords" content="ATS Resume Checker, Resume Score, Resume Review, ATS Compatibility, AI-free Resume Parser">
+  <meta name="author" content="Digital Heroes">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Decorative Glowing Backdrops -->
+  <div class="bg-glow-1"></div>
+  <div class="bg-glow-2"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav-container">
+      <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        <span>ResuCheck ATS</span>
+      </div>
+      <div class="header-controls">
+        <!-- Sign Out Button (initially hidden) -->
+        <button class="action-btn btn-secondary hidden" id="signOutBtn" style="padding: 8px 16px; font-size: 0.85rem; border-radius: 8px; margin-right: 8px;">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 16px; height: 16px;">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          Sign Out
+        </button>
+
+        <button class="theme-btn" id="themeToggle" aria-label="Toggle light and dark theme">
+          <!-- Moon Icon -->
+          <svg class="dark-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 11-16.9-11.54a.75.75 0 01.818.162z" clip-rule="evenodd" />
+          </svg>
+          <!-- Sun Icon -->
+          <svg class="light-icon" style="display:none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM6.161 6.21a.75.75 0 011.06 0l1.591 1.59a.75.75 0 11-1.06 1.061L6.16 7.27a.75.75 0 010-1.06zm10.89 0a.75.75 0 010 1.06l-1.59 1.591a.75.75 0 11-1.061-1.06l1.59-1.591a.75.75 0 011.06 0zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.22 15.66a.75.75 0 011.06 1.061l-1.591 1.59a.75.75 0 11-1.06-1.06l1.59-1.591a.75.75 0 011.06 0zm10.89 0a.75.75 0 010 1.06l1.591 1.59a.75.75 0 11-1.06-1.06l-1.59-1.591a.75.75 0 011.06 0zM3 12a.75.75 0 01.75-.75h2.25a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm15 0a.75.75 0 01.75-.75h2.25a.75.75 0 010 1.5h-2.25A.75.75 0 0118 12zM12 7.5a4.5 4.5 0 110 9 4.5 4.5 0 010-9z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Hero / Title -->
+    <section class="hero">
+      <h1>AI-Free <span>ATS Resume Analyzer</span></h1>
+      <p>Analyze your resume locally and securely. Receive an instant breakdown of your resume score, keywords, action verbs, and ATS compatibility.</p>
+      <div class="hero-dh-wrap">
+        <a href="https://digitalheroesco.com" target="_blank" rel="noopener" class="dh-btn" id="digitalHeroesBtn">Built for Digital Heroes</a>
+      </div>
+    </section>
+
+    <!-- Authentication Wall (Sign In Card) -->
+    <section class="auth-wrapper" id="authWall">
+      <div class="glass-card auth-card">
+        <h3 class="auth-title">Sign in to ResuCheck</h3>
+        <p class="auth-subtitle">Get instant access to uploader, scoring, and checklist metrics</p>
+        
+        <form id="loginForm">
+          <div class="input-group">
+            <label for="loginEmail">Email Address</label>
+            <input type="email" id="loginEmail" placeholder="e.g. name@domain.com" required>
+          </div>
+          <div class="input-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" placeholder="Minimum 6 characters" required>
+          </div>
+          
+          <button type="submit" class="auth-submit-btn">
+            <span class="btn-text">Sign In</span>
+            <span class="auth-spinner hidden"></span>
+          </button>
+        </form>
+        
+        <div class="demo-notice">
+          <strong>Quick Demo access:</strong> Any email and password (min 6 characters) works.
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Workspace (Hidden until logged in) -->
+    <div id="workspaceWrapper" class="hidden">
+      <!-- Upload Section -->
+      <section class="upload-wrapper">
+        <div class="upload-card" id="dropzone">
+          <input type="file" id="fileInput" class="file-input" accept=".pdf,.docx">
+          <div class="upload-content">
+            <div class="upload-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+              </svg>
+            </div>
+            <h3>Drag & Drop your Resume</h3>
+            <p>Supports PDF and DOCX files up to 5MB</p>
+            <button class="browse-btn" onclick="document.getElementById('fileInput').click()">Browse File</button>
+          </div>
+        </div>
+        
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingState">
+          <div class="spinner"></div>
+          <h3 style="margin-bottom: 8px;">Analyzing Resume...</h3>
+          <p style="color: var(--text-secondary);">Extracting text, analyzing keywords, and rating ATS structure.</p>
+        </div>
+      </section>
+
+      <!-- Dashboard Panel (Populated on Parse) -->
+      <section class="dashboard" id="analyzerDashboard">
+        <div class="grid-2">
+          <!-- Score Card -->
+          <div class="glass-card score-card">
+            <div class="card-title">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+              Overall Score
+            </div>
+            
+            <div class="score-flex-container">
+              <div class="score-circle-wrapper">
+                <svg>
+                  <circle class="circle-bg" cx="85" cy="85" r="72"></circle>
+                  <circle class="circle-progress" id="scoreCircle" cx="85" cy="85" r="72"></circle>
+                </svg>
+                <div class="score-text-center">
+                  <div class="score-number" id="scoreValue">0</div>
+                  <div class="score-label">/100</div>
+                </div>
+              </div>
+              
+              <div class="subscore-pills">
+                <div class="subscore-pill">
+                  <div class="subscore-pill-value" id="atsScoreValue">0%</div>
+                  <div class="subscore-pill-label">ATS Match</div>
+                </div>
+                <div class="subscore-pill">
+                  <div class="subscore-pill-value" id="sectionsScoreValue">0/5</div>
+                  <div class="subscore-pill-label">Key Sections</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Details Checklist Card -->
+          <div class="glass-card checklist-card">
+            <div class="card-title">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+              </svg>
+              Resume Checklist
+            </div>
+            
+            <div class="checklist-section">
+              <div class="checklist-group">
+                <div class="checklist-group-title">Contact & Professional Links</div>
+                <div class="checklist-grid">
+                  <!-- Contact Email -->
+                  <div class="checklist-item" id="chkEmail">
+                    <div class="status-badge"></div>
+                    <span class="checklist-item-text">Email Address</span>
+                  </div>
+                  <!-- Contact Phone -->
+                  <div class="checklist-item" id="chkPhone">
+                    <div class="status-badge"></div>
+                    <span class="checklist-item-text">Phone Number</span>
+                  </div>
+                  <!-- LinkedIn -->
+                  <div class="checklist-item" id="chkLinkedIn">
+                    <div class="status-badge"></div>
+                    <span class="checklist-item-text">LinkedIn Profile</span>
+                  </div>
+                  <!-- GitHub -->
+                  <div class="checklist-item" id="chkGitHub">
+                    <div class="status-badge"></div>
+                    <span class="checklist-item-text">GitHub Link</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="checklist-group">
+                <div class="checklist-group-title">Standard ATS Sections</div>
+                <div class="checklist-grid">
+                  <!-- Work Experience -->
+                  <div class="checklist-item" id="chkExperience">
+                    <div class="status-badge"></div>
+                    <span class="checklist-item-text">Work Experience</span>
+                  </div>
+                  <!-- Education -->
+                  <div class="checklist-item" id="chkEducation">
+                    <div class="status-badge"></div>
+                    <span class="checklist-item-text">Education</span>
+                  </div>
+                  <!-- Skills -->
+                  <div class="checklist-item" id="chkSkills">
+                    <div class="status-badge"></div>
+                    <span class="checklist-item-text">Skills Section</span>
+                  </div>
+                  <!-- Projects -->
+                  <div class="checklist-item" id="chkProjects">
+                    <div class="status-badge"></div>
+                    <span class="checklist-item-text">Projects Section</span>
+                  </div>
+                  <!-- Certifications -->
+                  <div class="checklist-item" id="chkCertifications">
+                    <div class="status-badge"></div>
+                    <span class="checklist-item-text">Certifications</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Metrics Row -->
+        <div class="quick-metrics">
+          <div class="metric-box">
+            <div class="metric-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <div class="metric-details">
+              <p>Word Count</p>
+              <h4 id="metricWordCount">0</h4>
+            </div>
+          </div>
+          
+          <div class="metric-box">
+            <div class="metric-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div class="metric-details">
+              <p>Page Count</p>
+              <h4 id="metricPageCount">0</h4>
+            </div>
+          </div>
+
+          <div class="metric-box">
+            <div class="metric-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div class="metric-details">
+              <p>Reading Time</p>
+              <h4 id="metricReadingTime">0 min</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-2-equal">
+          <!-- Keywords density -->
+          <div class="glass-card">
+            <div class="card-title">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+              </svg>
+              Keyword Density Analysis
+            </div>
+            <div class="keyword-analysis" id="keywordsList">
+              <!-- Keyword Items will be populated dynamically -->
+            </div>
+          </div>
+
+          <!-- Tone and Verb analysis -->
+          <div class="glass-card">
+            <div class="card-title">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              Resume Action & Tone Analyzer
+            </div>
+            
+            <div class="verb-analysis-split">
+              <div class="verb-column">
+                <div class="verb-stats">
+                  <span class="verb-badge success-badge">Action Verbs</span>
+                  <strong id="actionVerbsCount">0</strong>
+                </div>
+                <div class="verb-pill-container" id="actionVerbsContainer">
+                  <!-- Action verbs pills dynamic -->
+                </div>
+              </div>
+
+              <div class="verb-column">
+                <div class="verb-stats">
+                  <span class="verb-badge danger-badge">Weak / Fluff Words</span>
+                  <strong id="weakWordsCount">0</strong>
+                </div>
+                <div class="verb-pill-container" id="weakWordsContainer">
+                  <!-- Weak words pills dynamic -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Suggested Improvements -->
+        <div class="glass-card" style="margin-bottom: 24px;">
+          <div class="card-title">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 01-2 2h0a2 2 0 01-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+            Recommended Improvements
+          </div>
+          
+          <div class="suggestions-list" id="suggestionsContainer">
+            <!-- Dynamically populated suggestions -->
+          </div>
+
+          <div class="dashboard-actions">
+            <button class="action-btn btn-secondary" id="copySuggestionsBtn">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+              </svg>
+              Copy Suggestions
+            </button>
+            <button class="action-btn btn-primary" id="downloadReportBtn">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Download Report PDF
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Copy Success Toast -->
+  <div class="toast" id="toastNotification">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    <span id="toastMessage">Suggestions copied to clipboard!</span>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <div class="footer-left">
+        <span class="footer-brand">⚡ ResuCheck ATS</span>
+        <span class="footer-copy">SaaS ATS Checker &amp; Score Estimator &copy; 2026</span>
+      </div>
+      <div class="footer-tagline">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+        </svg>
+        <span>Made with love for Premium Resume Analytics</span>
+      </div>
+      <div class="footer-right">
+        <div class="footer-author-block">
+          <div class="footer-avatar">DC</div>
+          <div class="footer-author-details">
+            <strong>Dhananjay C</strong>
+            <a href="mailto:dhananjayshekar12345@gmail.com" class="footer-email">dhananjayshekar12345@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CDNs for parsers and PDF generation -->
+  <!-- Mammoth.js for DOCX -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+  <!-- PDF.js for PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <!-- html2pdf.js for exporting dashboard to PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  
+  <script src="app.js"></script>
+</body>
+</html>
