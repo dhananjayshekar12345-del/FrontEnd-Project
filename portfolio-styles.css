@@ -152,29 +152,36 @@ body::before {
 /* ── NAVIGATION ── */
 nav {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 1200px;
   z-index: 100;
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  background: rgba(2, 6, 23, 0.75);
-  border-bottom: 1px solid var(--border);
-  transition: background-color 0.3s, border-color 0.3s;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(2, 6, 23, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0 24px;
 }
 body.light-theme nav {
-  background: rgba(243, 252, 248, 0.75);
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 .nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 76px;
+  height: 64px;
 }
 .nav-logo {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 22px;
+  font-size: 20px;
   background: linear-gradient(135deg, var(--accent), var(--accent2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -184,14 +191,14 @@ body.light-theme nav {
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   list-style: none;
 }
 .nav-menu a {
   color: var(--muted);
   text-decoration: none;
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.05em;
   padding: 6px 14px;
@@ -207,7 +214,7 @@ body.light-theme nav {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
 }
 .status-badge-pulse {
   display: flex;
@@ -277,7 +284,7 @@ body.light-theme nav {
   background: none;
   border: none;
   color: var(--muted);
-  font-size: 18px;
+  font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -293,7 +300,7 @@ body.light-theme nav {
   background: none;
   border: none;
   color: var(--text);
-  font-size: 24px;
+  font-size: 20px;
 }
 
 /* ── HERO ── */
@@ -516,7 +523,9 @@ section {
   gap: 30px;
 }
 .edu-card {
-  background: linear-gradient(135deg, rgba(7, 17, 24, 0.8) 0%, rgba(12, 34, 48, 0.4) 100%);
+  background: rgba(11, 19, 41, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 28px;
@@ -573,7 +582,9 @@ section {
   gap: 24px;
 }
 .skill-card {
-  background: linear-gradient(135deg, rgba(7, 17, 24, 0.8) 0%, rgba(12, 34, 48, 0.4) 100%);
+  background: rgba(11, 19, 41, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 32px;
@@ -648,7 +659,9 @@ section {
   margin: 0 auto;
 }
 .exp-card {
-  background: linear-gradient(135deg, rgba(7, 17, 24, 0.8) 0%, rgba(12, 34, 48, 0.4) 100%);
+  background: rgba(11, 19, 41, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 40px;
@@ -732,7 +745,9 @@ section {
   gap: 30px;
 }
 .project-card {
-  background: linear-gradient(135deg, rgba(7, 17, 24, 0.8) 0%, rgba(12, 34, 48, 0.4) 100%);
+  background: rgba(11, 19, 41, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 0;
@@ -1059,6 +1074,117 @@ footer {
   opacity: 1;
 }
 
+/* ── RECOGNITION & AWARDS ── */
+.awards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+  margin-top: 10px;
+}
+.award-card {
+  background: rgba(11, 19, 41, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+.award-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top left, var(--glow-color) 0%, transparent 60%);
+  opacity: 0.15;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.award-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--badge-color);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35), 0 0 30px var(--glow-color);
+}
+.award-header-badge {
+  display: flex;
+  margin-bottom: 24px;
+}
+.award-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background-color: var(--badge-bg);
+  border-radius: 30px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--badge-color);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+.award-sub {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.award-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.award-project {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--badge-color);
+  margin-bottom: 16px;
+  font-family: var(--font-sans);
+}
+.award-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Colors for Card Types */
+.award-cyan {
+  --badge-color: #00f0ff;
+  --badge-bg: rgba(0, 240, 255, 0.08);
+  --glow-color: rgba(0, 240, 255, 0.2);
+}
+.award-gold {
+  --badge-color: #fbbf24;
+  --badge-bg: rgba(251, 191, 36, 0.08);
+  --glow-color: rgba(251, 191, 36, 0.2);
+}
+.award-green {
+  --badge-color: #10b981;
+  --badge-bg: rgba(16, 185, 129, 0.08);
+  --glow-color: rgba(16, 185, 129, 0.2);
+}
+
+body.light-theme .award-card {
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+body.light-theme .award-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05), 0 0 20px var(--glow-color);
+}
+
 /* ── RESPONSIVE STYLES ── */
 @media (max-width: 992px) {
   .hero-container-grid {
@@ -1129,7 +1255,14 @@ footer {
     gap: 0;
   }
   nav {
-    padding: 0;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    padding: 0 16px;
   }
   .nav-menu {
     display: none;
@@ -1138,7 +1271,7 @@ footer {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 76px;
+    top: 64px;
     left: 0;
     right: 0;
     background-color: var(--bg);
@@ -1146,6 +1279,7 @@ footer {
     padding: 30px;
     gap: 20px;
     align-items: center;
+    border-radius: 0;
   }
   .mobile-nav-toggle {
     display: block;

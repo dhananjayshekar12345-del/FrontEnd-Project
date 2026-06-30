@@ -100,6 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const startCounterAnimation = (element) => {
     const target = parseFloat(element.getAttribute('data-target'));
     const decimals = parseInt(element.getAttribute('data-decimals') || '0');
+    const noPlus = element.getAttribute('data-no-plus') === 'true';
+    const suffix = noPlus ? '' : '+';
     const duration = 2000; // ms
     const startTime = performance.now();
     
@@ -114,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (decimals > 0) {
         element.textContent = currentValue.toFixed(decimals);
       } else {
-        element.textContent = Math.floor(currentValue) + '+';
+        element.textContent = Math.floor(currentValue) + suffix;
       }
       
       if (progress < 1) {
@@ -123,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (decimals > 0) {
           element.textContent = target.toFixed(decimals);
         } else {
-          element.textContent = target + '+';
+          element.textContent = target + suffix;
         }
       }
     };
